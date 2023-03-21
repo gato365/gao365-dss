@@ -1,0 +1,36 @@
+---
+title: "time_series"
+output: html_document
+date: "2023-03-10"
+---
+```{r}
+library(tidyverse)
+library(statcalpolypackage)
+```
+
+
+```{r}
+types = str_remove(colnames(mmm_stock_data), "mmm_")[-1]
+for(y_type in types) {
+  print( # wrap the ggplot code inside print() for a loop
+    mmm_stock_data %>%
+    ggplot(aes_string(x="stock_date", y=paste0("mmm_", y_type))) +
+    geom_point() + 
+    theme_bw()
+  )
+}
+
+```
+
+```{r}
+types2 = str_remove(colnames(netflix_stock_data), "nflx_")[-1]
+for(y_type in types2) {
+  print(
+    ggplot(netflix_stock_data, aes_string(x="stock_date", y=paste0("nflx_", y_type))) +
+    geom_point() + 
+    theme_bw()
+  )
+}
+```
+
+
